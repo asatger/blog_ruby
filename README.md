@@ -33,4 +33,10 @@ bundle install
 ```console
 rake db:migrate 
 ```
+## Run project 
+Run Rails server: 
+```console
+rails s 
+```
+Then go on : http://localhost:3000/posts
 ## Enjoy ! :)
