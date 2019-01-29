@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Date de rendu **17/02/19** à **23:59**
 
-Things you may want to cover:
+# Blog with Ruby/Rails
 
-* Ruby version
+## Setup the project
 
-* System dependencies
+### Clone the repository
+HTTPS : 
 
-* Configuration
+```console 
+git clone https://github.com/asatger/blog_ruby.git 
+```
 
-* Database creation
+SSH :
 
-* Database initialization
+```console 
+git clone git@github.com:asatger/blog_ruby.git
+```
+### Install bundles
 
-* How to run the test suite
+Go into root project: 
+```console
+cd blog_ruby/
+```
+Then, install bundles: 
+```console 
+bundle install
+```
+### Migrate database
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```console
+rake db:migrate 
+```
+## Enjoy ! :)
