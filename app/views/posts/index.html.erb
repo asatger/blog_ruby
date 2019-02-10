@@ -1,18 +1,37 @@
 
-<ul>
+    <div class="row">
+    <h3>Posts récents:</h3>
     <% @posts.each do |post| %>
-          <div class="card">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="images/office.jpg">
+    <div class="col s12 m12 l6">
+      <div class="card large">
+        <div class="card-image">
+        <%= image_tag(post.image.medium.url, :alt => post.title ) %>
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4"><%= post.title%><i class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          <div class="card-title">
+            <b> <%= link_to post_path(post) do  %> <%= post.title %> <% end %></b>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <div class="valign-wrapper">
+                <i class="tiny material-icons">event</i>
+                <%= post.created_at.strftime("%B %d, %Y %H:%M")%>
+              </div>
+            </div>
+            <div class="col s6">
+              <div class="valign-wrapper">
+                <i class="tiny material-icons">account_circle</i>
+                <%= link_to user_path(User.find(post.user_id)) do  %>
+                <%= User.find(post.user_id).first_name %>
+                <%= User.find(post.user_id).last_name %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <p style="text-align:justify;"> <%= post.lead %> </p>
         </div>
       </div>
+    </div>
     <% end %>
-</ul>
+  </div>
