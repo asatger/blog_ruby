@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.3'
 
+# Bundle kaminari
+gem 'kaminari'
+# Bundle material icons
 gem 'material_icons'
 # Bundle Materialize
 gem 'materialize-sass', '~> 1.0.0'

@@ -1,11 +1,11 @@
 
-    <div class="row">
+  <div class="row">
     <h3>Posts récents:</h3>
     <% @posts.each do |post| %>
     <div class="col s12 m12 l6">
       <div class="card large">
         <div class="card-image">
-        <%= image_tag(post.image.medium.url, :alt => post.title ) %>
+        
         </div>
         <div class="card-content">
           <div class="card-title">
@@ -34,4 +34,9 @@
       </div>
     </div>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col s12 center-align">
+      <%= paginate @posts %>
+    </div>
   </div>

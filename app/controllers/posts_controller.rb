@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     only: [:new, :edit, :update, :destroy]
 
     def index
-        @posts = Post.all.order('created_at DESC')
+        @posts = Post.all.order('created_at DESC').page(params[:page]).per(10);
     end
 
     def new
@@ -21,10 +21,18 @@ class PostsController < ApplicationController
         end
     end
 
+    def show
+        load_post
+    end
+
     def update
     end
 
     def destroy
+    end
+
+    def load_post
+        @post = Post.find(params[:id])
     end
 
     def load_user
