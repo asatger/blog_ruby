@@ -15,7 +15,7 @@
     <% end %>
 </div>
 </div>
-<%= image_tag(@post.image.url, :alt => @post.title ) %>
+<%= image_tag(@post.image.url, :alt => @post.title, :width => '100%' ) %>
 <div style="text-align: justify;">
     <p> <%= @post.lead %>
     <p> <%= @post.content %></p>

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+    before_action :load_post,
+    only: [:edit, :show]
     before_action :load_user
     before_action :authenticate_user!,
     only: [:new, :edit, :update, :destroy]
@@ -13,7 +15,6 @@ class PostsController < ApplicationController
 
     def create 
         @post = @user.posts.create(get_params)
-        puts(@post)
         if @post.valid? 
             redirect_to posts_path
         else
@@ -22,13 +23,20 @@ class PostsController < ApplicationController
     end
 
     def show
-        load_post
     end
 
     def update
+        @post = @user.posts.update(params[:id], get_params)
+        if @post.valid? 
+            redirect_to user_path(current_user)
+        else
+            render 'new'
+        end
     end
 
     def destroy
+        @post = Post.destroy(params[:id])
+        redirect_to user_path
     end
 
     def load_post

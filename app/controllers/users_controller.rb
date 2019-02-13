@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+    before_action :load_user
+    before_action :load_posts
     before_action :authenticate_user!,
-    only: [:edit, :update, :destroy]
+    only: [:edit, :update]
 
     def index
     end
@@ -19,9 +21,27 @@ class UsersController < ApplicationController
     end
 
     def update
+        @user = User.update(params[:id], get_params)
+        if @user.valid?
+            redirect_to user_path
+        else
+            render 'new'
+        end
     end
 
     def destroy
+    end
+
+    def load_posts
+        @posts = User.find(params[:id]).posts
+    end
+
+    def load_user
+        @user = User.find(params[:id])
+    end
+
+    def not_found
+        raise ActionController::RoutingError.new('Not Found')
     end
 
     def get_params
