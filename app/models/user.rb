@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :posts
+  acts_as_commontator
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,5 +8,9 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :birth_date, presence: true
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
   
 end
