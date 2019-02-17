@@ -1,11 +1,21 @@
-<%= f.label :title%><br>
-<%= f.text_field :title %> 
-<br>
-<%= f.label :lead%><br>
-<%= f.text_area :lead %> 
-<br>
-<%= f.label :content%><br>
-<%= f.text_area :content %>
-<br>
-<%= f.label :image%><br>
-<%= f.file_field :image %>
+    <%= f.label :title%><br>
+    <%= f.text_field :title %> 
+    <br>
+    <%= f.label :lead%><br>
+    <%= f.text_area :lead %> 
+    <br>
+    <%= f.label :content%><br>
+    <%= f.text_area :content %>
+    <br>
+    <%= f.label :image%><br>
+    <div class="#">
+        <div class="file-field input-field gallery_picture">
+
+            <div class="waves-effect waves-light btn secondary">
+
+                <span>Upload file</span>
+                <%= f.file_field :image %>
+            </div>
+            <input class="file-path validate" type="text"/>
+        </div>
+    </div> 

@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
     before_action :load_post,
-    only: [:edit, :show]
+    only: [:edit, :show, :destroy]
     before_action :load_user
     before_action :authenticate_user!,
     only: [:new, :edit, :update, :destroy]
 
     def index
-        @posts = Post.all.order('created_at DESC').page(params[:page]).per(10);
+        @posts = Post.all.order('created_at DESC').page(params[:page]).per(4);
     end
 
     def new
@@ -29,7 +29,6 @@ class PostsController < ApplicationController
         if User.find(@post.user_id) != current_user
             redirect_to user_path(current_user)
         end
-
     end
 
     def update
@@ -42,8 +41,10 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post = Post.destroy(params[:id])
-        redirect_to user_path
+        if User.find(@post.user_id) == current_user
+            @post = Post.destroy(params[:id])
+        end
+        redirect_to user_path(current_user)
     end
 
     def load_post

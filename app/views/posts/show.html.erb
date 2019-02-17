@@ -1,25 +1,28 @@
-
-<div class="row">
-<h3> <%= @post.title %></h3>
-</div>
-<div class="row">
-<div class="col s6 valign-wrapper">
-    <i class="small material-icons">event</i>
-    <%= @post.created_at.strftime("%B %d, %Y %H:%M")%>
-</div>
-<div class="col s6 valign-wrapper">
-    <i class="small material-icons">account_circle</i>
-    <%= link_to user_path(User.find(@post.user_id)) do  %>
-    <%= User.find(@post.user_id).first_name %>
-    <%= User.find(@post.user_id).last_name %>
-    <% end %>
-</div>
-</div>
-<%= image_tag(@post.image.url, :alt => @post.title, :width => '100%' ) %>
-<div style="text-align: justify;">
-    <p> <%= @post.lead %>
-    <p> <%= @post.content %></p>
-</div>
-<div class="row">
-    <%= commontator_thread(@post) %>
+<div class="white-background">
+    <div class="row">
+        <h3> <%= @post.title %></h3>
+    </div>
+    <div class="row">
+        <div class="col s6 valign-wrapper">
+            <i class="small material-icons">event</i>
+            <%= @post.created_at.strftime("%B %d, %Y %H:%M")%>
+        </div>
+        <div class="col s6">
+        <%= link_to user_path(User.find(@post.user_id)) do  %>
+                <div class="valign-wrapper">
+                    <i class="tiny material-icons">account_circle</i>
+                    <%= User.find(@post.user_id).first_name %>
+                    <%= User.find(@post.user_id).last_name %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <%= image_tag(@post.image.url, :alt => @post.title, :width => '100%' ) %>
+    <div style="text-align: justify;">
+        <p> <%= @post.lead %>
+        <p> <%= @post.content %></p>
+    </div>
+    <div class="row">
+        <%= commontator_thread(@post) %>
+    </div>
 </div>

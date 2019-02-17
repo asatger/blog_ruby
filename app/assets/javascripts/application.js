@@ -18,3 +18,8 @@
 //= require_tree .
 
 //= require materialize
+document.addEventListener('DOMContentLoaded', function() {
+    let elems = document.querySelectorAll('.dropdown-trigger');
+    let options = { alignment: "right" };
+    let instances = M.Dropdown.init(elems, options);
+});

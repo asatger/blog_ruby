@@ -3,34 +3,39 @@
     <h3>Posts récents:</h3>
     <% @posts.each do |post| %>
     <div class="col s12 m12 l6">
-      <div class="card large">
-        <div class="card-image">
-        <%= image_tag(post.image.medium.url, :alt => post.title ) %>
-        </div>
-        <div class="card-content">
-          <div class="card-title">
-            <b> <%= link_to post_path(post) do  %> <%= post.title %> <% end %></b>
+      <%= link_to post_path(post) do  %> 
+        <div class="card large">
+          <div class="card-image">
+          <%= image_tag(post.image.medium.url, :alt => post.title ) %>
           </div>
-          <div class="row">
-            <div class="col s6">
-              <div class="valign-wrapper">
-                <i class="tiny material-icons">event</i>
-                <%= post.created_at.strftime("%B %d, %Y %H:%M")%>
-              </div>
+          <div class="card-content">
+            <div class="card-title">
+              <b class="no-link"><%= post.title %></b>
             </div>
-            <div class="col s6">
-              <div class="valign-wrapper">
-                <i class="tiny material-icons">account_circle</i>
+            <div class="row">
+              <div class="col s6">
+                <div class="valign-wrapper no-link">
+                  <i class="tiny material-icons">event</i>
+                  <%= post.created_at.strftime("%B %d, %Y %H:%M")%>
+                </div>
+              </div>
+              <div class="col s6">
                 <%= link_to user_path(User.find(post.user_id)) do  %>
-                <%= User.find(post.user_id).first_name %>
-                <%= User.find(post.user_id).last_name %>
+                  <div class="valign-wrapper">
+                    <i class="tiny material-icons">account_circle</i>
+                    <%= User.find(post.user_id).first_name %>
+                    <%= User.find(post.user_id).last_name %>
+                  </div>
                 <% end %>
               </div>
             </div>
+            
+            <p style="text-align:justify;"> <%= post.lead %> </p>
+            <div class="waves-effect waves-light btn secondary button--text"> 
+              <%= link_to('Voir plus', post_path(post)) %>
+            </div>
           </div>
-          
-          <p style="text-align:justify;"> <%= post.lead %> </p>
-        </div>
+        <% end %>
       </div>
     </div>
     <% end %>
